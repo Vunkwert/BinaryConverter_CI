@@ -1,7 +1,7 @@
 ﻿using Module.Core;
 using NUnit.Framework;
 using Lab.Interfaces;
-using Lab.Implementations.GenCode3; //для смены реализации меня цифру 1,2,3
+using Lab.Implementations.GenCode2; //для смены реализации меня цифру 1,2,3
 
 namespace Lab.Tests;
 
