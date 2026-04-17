@@ -13,11 +13,19 @@ namespace Module.Tests
     [TestFixture]
     public class GeneratedTests
     {{
-        private BinaryToDecimalConverter _sut = new BinaryToDecimalConverter();
+        // Используем полное имя, чтобы точно не ошибиться
+        private Lab.Implementations.GenCode1.BinaryToDecimalConverter _sut;
+
+        [SetUp]
+        public void Setup() 
+        {{
+            _sut = new Lab.Implementations.GenCode1.BinaryToDecimalConverter();
+        }}
 
         {methods}
     }}
 }}"""
+
 
 def generate():
     with open("config.yaml", 'r') as f:
