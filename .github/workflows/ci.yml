@@ -1,22 +1,29 @@
-name: .NET CI Pipeline
-
-on:
-  push:
-    branches: [ "main", "ai-version-1", "ai-version-2", "ai-version-3" ]
-  workflow_dispatch:
+name: CI - Generate and Run Tests
+on: [push]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build project
-      run: dotnet build --no-restore
-    - name: Run Tests
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Generate Tests
+        run: python generator/gen_tests.py
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build and Test
+        run: |
+          dotnet build BinaryConverter.sln
+          dotnet test --verbosity normal
