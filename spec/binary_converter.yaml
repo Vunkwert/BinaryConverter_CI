@@ -1,1 +1,29 @@
+module: BinaryToDecimalConverter
 
+methods:
+  - name: ToBinary
+    signature: "string ToBinary(int decimalNumber)"
+    pre: "decimalNumber >= 0"
+    post: "Результат — двоичная строка"
+    equivalence_classes:
+      - case: "Positive number"
+        inputs: [10]
+        expected: "1010"
+      - case: "Zero"
+        inputs: [0]
+        expected: "0"
+      - case: "Negative error"
+        inputs: [-1]
+        expected: "ArgumentException"
+
+  - name: ToDecimal
+    signature: "int ToDecimal(string binaryString)"
+    pre: "binaryString != null"
+    post: "Результат — число"
+    equivalence_classes:
+      - case: "Valid string"
+        inputs: ["111"]
+        expected: 7
+      - case: "Invalid symbols"
+        inputs: ["102"]
+        expected: "ArgumentException"
