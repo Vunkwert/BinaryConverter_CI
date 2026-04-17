@@ -1,3 +1,4 @@
+namespace Lab.Implementations.GenCode1;
 namespace Lab.Interfaces;
 
 public interface IBinaryToDecimalConverter
