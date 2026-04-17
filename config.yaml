@@ -1,1 +1,2 @@
-
+spec_path: spec/binary_converter.yaml
+output_dir: tests/Module.Tests
